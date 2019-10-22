@@ -6,12 +6,20 @@ dependencies {
     compile 'io.projectreactor:reactor-core:3.2.9.RELEASE'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
 }
 
 
 sourceSets {
-    main.java.srcDirs = ['src/main/java']
-    main.resources.srcDirs = ['src/main/resources']
+    test {
+        java.srcDirs = ['src/test/java']
+        resources.srcDirs = ['src/test/resources']
+    }
+    main {
+        java.srcDirs = ['src/main/java']
+        resources.srcDirs = ['src/main/resources']
+    }
 }
 
 sourceCompatibility = JavaVersion.VERSION_11

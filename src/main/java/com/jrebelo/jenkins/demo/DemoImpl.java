@@ -10,19 +10,26 @@ import reactor.core.publisher.Flux;
 public class DemoImpl implements DemoInterface {
 
     private final Publisher<?> startPublisher;
-    private int valueLimit;
+    private final long valueLimit;
+    private final Duration delay;
 
-    public DemoImpl(Publisher<?> startPublisher, int valueLimit) {
+    public DemoImpl(Publisher<?> startPublisher, long valueLimit) {
         this.startPublisher = startPublisher;
         this.valueLimit = valueLimit;
+        this.delay = Duration.ofSeconds(1);
+    }
+
+    public DemoImpl(Publisher<?> startPublisher, long valueLimit, Duration delay) {
+        this.startPublisher = startPublisher;
+        this.valueLimit = valueLimit;
+        this.delay = delay;
     }
 
     @Override
     public Stream<Integer> stream() {
-        return Flux.range(1, Integer.MAX_VALUE)
-                   .delaySubscription(startPublisher)
+        return Flux.range(0, Integer.MAX_VALUE).delaySubscription(startPublisher)
                    .takeWhile( val -> val < valueLimit)
-                   .delayElements(Duration.ofSeconds(1))
+                   .delayElements(delay)
                    .toStream()
                    ;
     }
