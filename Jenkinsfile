@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'gradle:jre11'
-        }
-    } 
+    agent any
     stages {
         stage('Stage 1') {
             steps {
