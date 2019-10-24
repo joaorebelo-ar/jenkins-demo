@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Stage 1') {
+        stage('Build') {
             steps {
-                echo 'Hello world!' 
+                sh './gradlew build' 
+                archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true  
+            }
+        }
+
+        stage('Test'){
+             steps {
+                sh './gradlew test' 
             }
         }
     }
