@@ -27,7 +27,8 @@ public class DemoImpl implements DemoInterface {
 
     @Override
     public Stream<Integer> stream() {
-        return Flux.range(0, Integer.MAX_VALUE).delaySubscription(startPublisher)
+        return Flux.range(0, Integer.MAX_VALUE)
+                   .delaySubscription(startPublisher)
                    .takeWhile( val -> val < valueLimit)
                    .delayElements(delay)
                    .toStream()
