@@ -20,14 +20,15 @@ public class DemoResource {
     
 
     @GET
-    public int getValue() {
-        demoInterface
+    public long getValue() {
+        if(!processor.hasCompleted()){
+            processor.sink().next(new Object());
+            processor.sink().complete();
+        }
+
+        return demoInterface
             .stream()
-            .
+            .reduce(0, (val, acc) -> val + acc);
     }
-
-    var integerStream = demo
-        .stream();
-
 
 }

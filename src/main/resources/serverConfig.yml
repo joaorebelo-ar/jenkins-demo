@@ -1,0 +1,9 @@
+---
+server:
+  rootPath: /api/
+  applicationConnectors:
+    - type: http
+      port: 8042
+  adminConnectors:
+    - type: http
+      port: 9011
