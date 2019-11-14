@@ -4,6 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.time.Duration;
 
 import reactor.core.publisher.DirectProcessor;
 
@@ -15,7 +16,7 @@ public class DemoResource {
     private final DirectProcessor<Object> processor;
     public DemoResource(int defaultValue) {
         this.processor = DirectProcessor.create();
-        this.demoInterface = new DemoImpl(processor, defaultValue);
+        this.demoInterface = new DemoImpl(processor, defaultValue, Duration.ZERO);
     }
     
 
