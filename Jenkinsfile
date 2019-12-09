@@ -21,8 +21,8 @@ pipeline {
         stage('Deploy'){
              steps {
                  script{
-                    sh 'docker stop jenkins-demo' 
                     sh 'apt-get update && apt-get install -y libltdl7 && rm -rf /var/lib/apt/lists/*'
+                    sh 'docker stop jenkins-demo' 
                     docker.build('jenkins-demo').run('--name jenkins-demo -p 9999:8080')
                  }
             }
