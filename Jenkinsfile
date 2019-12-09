@@ -19,6 +19,7 @@ pipeline {
         }
 
         stage('Deploy'){
+            agent { node { label 'master' } }
              steps {
                  script{
                     sh 'docker build -t jenkins-demo .'
