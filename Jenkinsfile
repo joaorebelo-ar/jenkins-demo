@@ -17,5 +17,18 @@ pipeline {
                 archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true  
             }
         }
+
+        stage('Deploy'){
+             steps {
+                def img = docker.build('jenkins-demo')
+    
+                img.run('-p 9999:8080')
+            }
+        }
+    }
+    post {
+        cleanup {
+            cleanWs()
+        }
     }
 }
