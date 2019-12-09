@@ -21,7 +21,8 @@ pipeline {
         stage('Deploy'){
              steps {
                  script{
-                    docker.build('jenkins-demo').run('-p 9999:8080')
+                    sh 'docker build -t jenkins-demo .'
+                    //docker.build('jenkins-demo').run('-p 9999:8080')
                  }
             }
         }
