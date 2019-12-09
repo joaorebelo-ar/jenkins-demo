@@ -19,7 +19,6 @@ pipeline {
         }
 
         stage('Deploy'){
-            agent { node { label 'master' } }
              steps {
                  script{
                     sh 'apt-get update && apt-get install -y libltdl7 && rm -rf /var/lib/apt/lists/*'
