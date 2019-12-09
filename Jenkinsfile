@@ -20,9 +20,7 @@ pipeline {
 
         stage('Deploy'){
              steps {
-                def img = docker.build('jenkins-demo')
-    
-                img.run('-p 9999:8080')
+                docker.build('jenkins-demo').run('-p 9999:8080')
             }
         }
     }
