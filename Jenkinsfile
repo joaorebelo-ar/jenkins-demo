@@ -20,7 +20,9 @@ pipeline {
 
         stage('Deploy'){
              steps {
-                docker.build('jenkins-demo').run('-p 9999:8080')
+                 script{
+                    docker.build('jenkins-demo').run('-p 9999:8080')
+                 }
             }
         }
     }
