@@ -22,6 +22,7 @@ pipeline {
             agent { node { label 'master' } }
              steps {
                  script{
+                    sh 'apt-get update && apt-get install -y libltdl7 && rm -rf /var/lib/apt/lists/*'
                     sh 'docker build -t jenkins-demo .'
                     //docker.build('jenkins-demo').run('-p 9999:8080')
                  }
