@@ -17,6 +17,7 @@ pipeline {
                  docker { image 'openjdk:11-jdk' }
             }
              steps {
+                sh 'chmod +x gradlew'
                 sh './gradlew test' 
                 archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true  
             }
