@@ -1,0 +1,17 @@
+FROM jenkins/jenkins:2.204.2-alpine
+
+USER root
+RUN mkdir /var/cache/jenkins
+RUN chown -R jenkins:jenkins /var/cache/jenkins
+
+RUN sed -i '$ a\http://dl-cdn.alpinelinux.org/alpine/latest-stable/community' /etc/apk/repositories && apk update
+
+RUN apk add gcc python-dev docker libc-dev libffi-dev openssl-dev make
+
+RUN apk add py-pip && pip install docker-compose
+
+RUN adduser jenkins docker && adduser jenkins ping && chown -R jenkins:jenkins $JENKINS_HOME/
+
+USER jenkins
+
+ENV JENKINS_OPTS="--handlerCountMax=300 --webroot=/var/cache/jenkins/war"
