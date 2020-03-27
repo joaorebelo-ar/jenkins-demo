@@ -37,8 +37,11 @@ pipeline {
         }
     }
     post {
+        
         cleanup {
-            cleanWs()
+            node('master'){
+                cleanWs()
+            }
         }
     }
 }
