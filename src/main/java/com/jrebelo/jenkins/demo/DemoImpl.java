@@ -29,7 +29,7 @@ public class DemoImpl implements DemoInterface {
     public Stream<Integer> stream() {
         return Flux.range(0, Integer.MAX_VALUE)
                    .delaySubscription(startPublisher)
-                   .takeWhile( val -> val <= valueLimit)
+                   .takeWhile( val -> val < valueLimit)
                    .delayElements(delay)
                    .toStream()
                    ;
